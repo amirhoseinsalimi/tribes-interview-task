@@ -1,5 +1,8 @@
 <template>
-  <div class="inline-block rounded-3xl px-5 py-2" :class="`text-${type} ${backgroundColor}`">
+  <div
+    class="inline-block rounded-3xl px-5 py-2"
+    :class="`text-${type} ${backgroundColor}`"
+  >
     {{ title }}
   </div>
 </template>
@@ -30,7 +33,7 @@ export default {
       } else {
         return 'bg-red-200'
       }
-    }
-  }
+    },
+  },
 }
 </script>
