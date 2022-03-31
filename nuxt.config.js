@@ -21,7 +21,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~plugins/l18n.plugin.js',
+    '~plugins/dropdown.plugin.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
