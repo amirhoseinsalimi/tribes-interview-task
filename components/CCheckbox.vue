@@ -4,7 +4,6 @@
       v-model="initialValue"
       type="checkbox"
       class="h-4 w-4 mr-3 p-2 text-sm"
-      @change="emitEvent"
       @input="emitEvent"
     />
     <span class="leading-4">
@@ -46,6 +45,7 @@ export default {
       const value = this.initialValue
 
       this.$emit('input', value)
+      this.$emit('change', value)
 
       if (value) {
         this.$emit('checked', value)
