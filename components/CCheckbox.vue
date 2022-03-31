@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     emitEvent() {
-      const value = this.initialValue
+      const value = !this.initialValue
 
       this.$emit('input', value)
       this.$emit('change', value)
