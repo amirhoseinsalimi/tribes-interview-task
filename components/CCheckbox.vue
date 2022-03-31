@@ -1,12 +1,13 @@
 <template>
   <label class="inline-flex flex-row align-middle">
     <input
-      v-model="value"
+      v-model="initialValue"
       type="checkbox"
-      class="h-5 w-5 mr-3 p-2 text-sm"
-      @change="$emit('change', { label, id, value })"
+      class="h-4 w-4 mr-3 p-2 text-sm"
+      @change="emitEvent"
+      @input="emitEvent"
     />
-    <span>
+    <span class="leading-4">
       {{ label }}
     </span>
   </label>
@@ -16,7 +17,7 @@
 export default {
   name: 'CCheckbox',
   props: {
-    initialValue: {
+    value: {
       type: Boolean,
       required: false,
       default: false,
@@ -32,8 +33,26 @@ export default {
   },
   data() {
     return {
-      value: this.initialValue,
+      initialValue: this.value,
     }
+  },
+  watch: {
+    value(newValue) {
+      this.initialValue = newValue
+    },
+  },
+  methods: {
+    emitEvent() {
+      const value = this.initialValue
+
+      this.$emit('input', value)
+
+      if (value) {
+        this.$emit('checked', value)
+      } else {
+        this.$emit('unchecked', value)
+      }
+    },
   },
 }
 </script>
