@@ -1,9 +1,9 @@
 <template>
-  <label class="inline-flex flex-row align-middle">
+  <label class="inline-flex flex-row align-middle cursor-pointer">
     <input
       v-model="initialValue"
       type="checkbox"
-      class="h-4 w-4 mr-3 p-2 text-sm"
+      class="h-4 w-4 mr-3 p-2 text-sm cursor-pointer"
       @input="emitEvent"
     />
     <span class="leading-4" :class="initialValue && 'line-through'">
