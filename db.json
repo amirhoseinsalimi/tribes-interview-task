@@ -13,7 +13,7 @@
         {
           "id": 2,
           "title": "Item 1/2",
-          "value": true
+          "value": false
         },
         {
           "id": 3,
@@ -50,7 +50,7 @@
         {
           "id": 4,
           "title": "Item 2/4",
-          "value": true
+          "value": false
         }
       ]
     },
