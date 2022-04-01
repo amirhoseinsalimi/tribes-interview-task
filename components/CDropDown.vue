@@ -64,8 +64,9 @@
             id="listbox-item-0"
             :key="item.id"
             tabindex="0"
+            :class="isSelected(item) && 'line-through text-gray-400'"
             role="option"
-            class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 cursor-pointer hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-600"
+            class="cursor-default select-none relative py-2 pl-3 pr-9 cursor-pointer hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-600"
             @click="toggleSelect(item)"
           >
             <div class="flex items-center space-x-3">

@@ -6,7 +6,7 @@
       class="h-4 w-4 mr-3 p-2 text-sm"
       @input="emitEvent"
     />
-    <span class="leading-4">
+    <span class="leading-4" :class="initialValue && 'line-through'">
       {{ label }}
     </span>
   </label>
