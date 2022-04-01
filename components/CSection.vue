@@ -1,5 +1,5 @@
 <template>
-  <div style="border: 1px solid red;" class="w-full">
+  <div class="w-full">
     <div class="font-bold text-xl py-4">
       <slot name="title"></slot>
     </div>
@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'CSection'
-};
+  name: 'CSection',
+}
 </script>
