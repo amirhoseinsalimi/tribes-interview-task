@@ -85,6 +85,11 @@ export default {
   },
   methods: {
     removeCategory(id) {
+      const category = this.categories.find((cat) => id === cat.id)
+
+      category.items.forEach((item) => {
+        this.$store.commit('result/removeItem', item)
+      })
       this.categories = this.categories.filter((category) => category.id !== id)
     },
     handleItemCheck(item) {
