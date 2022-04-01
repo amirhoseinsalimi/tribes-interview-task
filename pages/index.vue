@@ -33,8 +33,10 @@
       </template>
 
       <div class="flex flex-wrap">
+        {{ $store.state }}
         <CChip
           v-for="item in $store.state.result.results"
+          :id="item.id"
           :key="`${item.title}-${item.id}`"
           class="mx-2 mb-2"
           :title="item.title"

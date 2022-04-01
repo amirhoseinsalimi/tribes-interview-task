@@ -1,9 +1,16 @@
 <template>
   <div
-    class="inline-block rounded-3xl px-5 py-2"
+    class="inline-block rounded-3xl py-2 relative"
     :class="`text-${type} ${backgroundColor}`"
   >
-    {{ title }}
+    <span
+      class="absolute text-white rounded-full left-0 h-9 w-9 text-center top-0.5 leading-loose"
+      :class="`bg-${type}`"
+      >
+      {{ id }}
+    </span>
+
+    <span class="pr-5 pl-12">{{ title }}</span>
   </div>
 </template>
 
@@ -13,6 +20,10 @@ export default {
   props: {
     title: {
       type: String,
+      required: true,
+    },
+    id: {
+      type: Number,
       required: true,
     },
     type: {
