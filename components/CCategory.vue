@@ -7,7 +7,6 @@
           v-model="allSelected"
           :label="title.title"
           @checked="destroy"
-          @unchecked="unCheckAllItems"
         />
       </template>
 
@@ -54,10 +53,7 @@ export default {
     },
     checkAllItems() {
       this.items.forEach((item) => (item.value = true))
-    },
-    unCheckAllItems() {
-      this.items.forEach((item) => (item.value = false))
-    },
+    }
   },
 }
 </script>
