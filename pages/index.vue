@@ -3,6 +3,23 @@
     <CSection>
       <template #title>
         <h2>
+          {{ $__('Select Dropdown') }}
+        </h2>
+      </template>
+
+      <div class="flex flex-wrap justify-between">
+        <CDropDown
+          :items="dropdownItems"
+          class="w-full"
+          @select="handleItemCheck"
+          @deselect="handleItemUnCheck"
+        />
+      </div>
+    </CSection>
+
+    <CSection>
+      <template #title>
+        <h2>
           {{ $__('Select Categories') }}
         </h2>
       </template>
