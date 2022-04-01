@@ -11,8 +11,8 @@
         <CDropDown
           :items="dropdownItems"
           class="w-full"
-          @select="handleItemCheck"
-          @deselect="handleItemUnCheck"
+          @select="addItem"
+          @deselect="removeItem"
         />
       </div>
     </CSection>
@@ -34,8 +34,8 @@
             :items="cat.items"
             :title="{ title: cat.title, id: cat.id, value: cat.value }"
             class="w-full inline-block"
-            @itemChecked="handleItemCheck"
-            @itemUnChecked="handleItemUnCheck"
+            @itemChecked="addItem"
+            @itemUnChecked="removeItem"
             @destroy="removeCategory"
           />
         </div>
@@ -87,15 +87,14 @@ export default {
     removeCategory(id) {
       const category = this.categories.find((cat) => id === cat.id)
 
-      category.items.forEach((item) => {
-        this.$store.commit('result/removeItem', item)
-      })
+      category.items.forEach(this.removeItem)
+
       this.categories = this.categories.filter((category) => category.id !== id)
     },
-    handleItemCheck(item) {
+    addItem(item) {
       this.$store.commit('result/addItem', item)
     },
-    handleItemUnCheck(item) {
+    removeItem(item) {
       this.$store.commit('result/removeItem', item)
     },
     findCategory(categoryId) {
