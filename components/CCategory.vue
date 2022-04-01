@@ -14,7 +14,13 @@
       <template #default>
         <ul class="list-none pt-4 pl-8">
           <li v-for="item in items" :key="item.id">
-            <CCheckbox :id="item.id" v-model="item.value" :label="item.title" />
+            <CCheckbox
+              :id="item.id"
+              v-model="item.value"
+              :label="item.title"
+              @checked="$emit('itemChecked', item)"
+              @unchecked="$emit('itemUnChecked', item)"
+            />
           </li>
         </ul>
       </template>
