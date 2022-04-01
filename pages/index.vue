@@ -24,7 +24,7 @@
         </h2>
       </template>
 
-      <div class="flex flex-wrap justify-between">
+      <div class="flex flex-wrap">
         <div
           v-for="cat in categories"
           :key="cat.id"
