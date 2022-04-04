@@ -104,7 +104,7 @@ export default {
     findCategory(categoryId) {
       return this.categories.find((category) => category.id === categoryId)
     },
-    generateType(item) {
+    generateType() {
       const types = ['primary', 'secondary', 'tertiary', 'flame']
 
       const randomNumber = this.$UtilService.generateRandomNumber(types.length)
