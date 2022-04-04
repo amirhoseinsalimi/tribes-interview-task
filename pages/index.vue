@@ -17,7 +17,7 @@
       </div>
     </CSection>
 
-    <CSection>
+    <CSection v-if="categories.length">
       <template #title>
         <h2>
           {{ $__('Select Categories') }}
