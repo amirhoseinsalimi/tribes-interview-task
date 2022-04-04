@@ -5,7 +5,7 @@
     >
     </label>
 
-    <div v-click-outside="closeDropdown" class="relative">
+    <div v-click-outside="closeDropdown" class="relative z-20">
       <span class="inline-block w-full rounded-md shadow-sm">
         <button
           type="button"
