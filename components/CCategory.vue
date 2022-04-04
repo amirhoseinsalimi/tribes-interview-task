@@ -17,7 +17,7 @@
               :id="item.id"
               v-model="item.value"
               :label="item.title"
-              @checked="$emit('itemChecked', item)"
+              @checked="onItemChecked(item)"
               @unchecked="$emit('itemUnChecked', item)"
             />
           </li>
@@ -53,7 +53,17 @@ export default {
     },
     checkAllItems() {
       this.items.forEach((item) => (item.value = true))
-    }
+    },
+    isChecked(item) {
+      return item.value
+    },
+    onItemChecked(item) {
+      this.$emit('itemChecked', item)
+
+      this.allSelected = this.items.every(this.isChecked)
+
+      this.allSelected && this.destroy()
+    },
   },
 }
 </script>
