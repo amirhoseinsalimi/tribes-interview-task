@@ -25,6 +25,7 @@ export default {
     '~plugins/l18n.plugin.js',
     '~plugins/dropdown.plugin.js',
     '~plugins/category.plugin.js',
+    '~plugins/util.plugin.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
