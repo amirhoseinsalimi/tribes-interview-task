@@ -1,7 +1,7 @@
 <template>
   <div
-    class="inline-block rounded-3xl py-2 relative"
-    :class="`text-${type} ${backgroundColor}`"
+    class="inline-block rounded-3xl py-2 relative cursor-pointer"
+    :class="`text-${type} ${backgroundColor} ${shadow && 'hover:shadow-xl transition-shadow'}`"
   >
     <span
       class="absolute text-white rounded-full left-0 h-9 w-9 text-center top-0.5 leading-loose"
@@ -25,6 +25,11 @@ export default {
     id: {
       type: Number,
       required: true,
+    },
+    shadow: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     type: {
       type: String,

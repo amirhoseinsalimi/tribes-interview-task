@@ -56,6 +56,7 @@
           :key="`${item.title}-${item.id}`"
           class="mx-2 mb-2"
           :title="item.title"
+          :shadow="true"
         />
       </div>
     </CSection>
