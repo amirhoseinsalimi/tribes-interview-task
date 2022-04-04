@@ -57,6 +57,7 @@
           class="mx-2 mb-2"
           :title="item.title"
           :shadow="true"
+          :type="item.type"
         />
       </div>
     </CSection>
@@ -93,6 +94,8 @@ export default {
       this.categories = this.categories.filter((category) => category.id !== id)
     },
     addItem(item) {
+      item.type = this.generateType()
+
       this.$store.commit('result/addItem', item)
     },
     removeItem(item) {
@@ -100,6 +103,13 @@ export default {
     },
     findCategory(categoryId) {
       return this.categories.find((category) => category.id === categoryId)
+    },
+    generateType(item) {
+      const types = ['primary', 'secondary', 'tertiary', 'flame']
+
+      const randomNumber = this.$UtilService.generateRandomNumber(types.length)
+
+      return types[randomNumber]
     },
   },
 }
