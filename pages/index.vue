@@ -58,6 +58,7 @@
           :title="item.title"
           :shadow="true"
           :type="item.type"
+          @click.native="removeItem(item)"
         />
       </div>
     </CSection>

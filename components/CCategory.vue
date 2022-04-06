@@ -12,10 +12,10 @@
 
       <template #default>
         <ul class="list-none pt-4 pl-8">
-          <li v-for="item in items" :key="item.id">
+          <li v-for="item in itemsComputed" :key="item.id">
             <CCheckbox
               :id="item.id"
-              v-model="item.value"
+              v-model="item.computedValue"
               :label="item.title"
               @checked="onItemChecked(item)"
               @unchecked="onItemUnchecked(item)"
@@ -45,6 +45,17 @@ export default {
       allSelected: this.title.value,
     }
   },
+  computed: {
+    itemsComputed() {
+      return this.items.map((item) =>
+        this.$UtilService.addField(
+          item,
+          'computedValue',
+          this.doesItemExistInStore(item)
+        )
+      )
+    },
+  },
   methods: {
     destroy() {
       this.checkAllItems()
@@ -52,10 +63,17 @@ export default {
       this.$emit('destroy', this.title.id)
     },
     checkAllItems() {
-      this.items.forEach((item) => (item.value = true))
+      this.items.forEach((item) => (item.computedValue = true))
     },
     isChecked(item) {
-      return item.value
+      return item.computedValue
+    },
+    doesItemExistInStore(item) {
+      const foundId = this.$store.state.result.results.findIndex(
+        (result) => result.id === item.id && result.title === item.title
+      )
+
+      return foundId !== -1
     },
     onItemChecked(item) {
       this.$emit('itemChecked', item)

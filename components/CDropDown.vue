@@ -1,9 +1,6 @@
 <template>
   <div class="space-y-1">
-    <label
-      class="block text-sm leading-5 font-medium text-gray-700"
-    >
-    </label>
+    <label class="block text-sm leading-5 font-medium text-gray-700"> </label>
 
     <div v-click-outside="closeDropdown" class="relative z-20">
       <span class="inline-block w-full rounded-md shadow-sm">
@@ -12,7 +9,7 @@
           class="cursor-pointer relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
           @click="openDropdown"
         >
-          <template v-if="!selectedItems.length">
+          <template v-if="!selectedItemsComputed.length">
             <span class="flex items-center space-x-3 text-gray-400">
               {{ $__('No Item Selected') }}
             </span>
@@ -21,7 +18,7 @@
           <span v-else class="flex items-center space-x-3 wrap">
             <span>
               <CChip
-                v-for="item in selectedItems"
+                v-for="item in selectedItemsComputed"
                 :id="item.id"
                 :key="`${item.id}-${item.title}`"
                 class="block truncate text-sm mr-1"
@@ -60,7 +57,7 @@
           class="max-h-56 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
         >
           <li
-            v-for="item in items"
+            v-for="item in itemsComputed"
             id="listbox-item-0"
             :key="item.id"
             tabindex="0"
@@ -71,7 +68,7 @@
           >
             <div class="flex items-center space-x-3">
               <span class="block">
-                {{ item.title }}
+                {{ item.title }} {{ item.computedValue }}
               </span>
             </div>
 
@@ -107,7 +104,6 @@ export default {
       type: Array,
       required: true,
     },
-    value: String,
   },
   data() {
     return {
@@ -115,13 +111,30 @@ export default {
       selectedItems: [],
     }
   },
+  computed: {
+    itemsComputed() {
+      return this.items.map((item) =>
+        this.$UtilService.addField(
+          item,
+          'computedValue',
+          this.doesItemExistInStore(item)
+        )
+      )
+    },
+    selectedItemsComputed() {
+      return this.itemsComputed.filter((item) => item.computedValue)
+    },
+  },
   methods: {
     isSelected(item) {
-      return (
-        this.selectedItems.findIndex(
-          (i) => i.id === item.id && i.title === item.title
-        ) !== -1
+      return item.computedValue
+    },
+    doesItemExistInStore(item) {
+      const foundId = this.$store.state.result.results.findIndex(
+        (result) => result.id === item.id && result.title === item.title
       )
+
+      return foundId !== -1
     },
     closeDropdown() {
       this.isOpen = false
@@ -146,10 +159,13 @@ export default {
     toggleSelect(item) {
       if (this.isSelected(item)) {
         this.$emit('deselect', item)
-        this.removeItem(item)
+        this.removeItem({ ...item, computedValue: false })
       } else {
         this.$emit('select', item)
-        this.addItem(item)
+        this.addItem({
+          ...item,
+          computedValue: this.doesItemExistInStore(item),
+        })
       }
     },
   },
