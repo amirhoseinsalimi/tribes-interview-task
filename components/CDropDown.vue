@@ -68,7 +68,7 @@
           >
             <div class="flex items-center space-x-3">
               <span class="block">
-                {{ item.title }} {{ item.computedValue }}
+                {{ item.title }}
               </span>
             </div>
 
